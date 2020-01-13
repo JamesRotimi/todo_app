@@ -7,7 +7,7 @@ class Todo {
 
 
   Todo(this._title, this._priority,this._date,[this._description]);
-  Todo.withId(this._id,this._title, this._priority,this._date,[this._description] );
+  Todo.withId(this._id,this._title, this._priority,this._date,[this._description]);
 
   int get id => _id;
   String get title => _title;
@@ -33,9 +33,9 @@ class Todo {
     _date = newDate;
   }
 
-  set description(String newDescritpion) {
-    if(newDescritpion.length <= 255)
-    _description = newDescritpion;
+  set description(String newDescription) {
+    if(newDescription.length <= 255)
+    _description = newDescription;
   }
 
   Map <String, dynamic> toMap() {

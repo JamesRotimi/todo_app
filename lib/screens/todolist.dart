@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/model/todo.dart';
 import 'package:todo_app/util/dbhelper.dart';
+import 'package:todo_app/screens/tododetail.dart';
 
 class TodoList extends StatefulWidget {
   @override
@@ -15,14 +16,16 @@ class TodoListState extends State {
   
   @override
   Widget build (BuildContext context) {
-    if (todos = null) {
+    if (todos == true) {
       todos = List<Todo>();
       getData();
     }
     return Scaffold(
       body: todoListItems(),
       floatingActionButton: FloatingActionButton(
-        onPressed: null,
+        onPressed: () {
+          navigateToDeatil(Todo('',3,''));
+        },
         tooltip: "Add new Todo",
         child: new Icon(Icons.add),
       ),
@@ -45,6 +48,7 @@ ListView todoListItems() {
               subtitle: Text(this.todos[position].date),
               onTap: () {
                 debugPrint("Tapped on " + this.todos[position].priority.toString());
+                navigateToDeatil(this.todos[position]);
               },
             ),
           );
@@ -87,4 +91,13 @@ Color getColor( int priority){
         break;
     }
 }
+
+void navigateToDeatil(Todo todo) async {
+  bool result = await Navigator.push(
+    context, MaterialPageRoute(builder: (context) => TodoDetail(todo)),
+  );
+  if (result == true) {
+    getData();
+  }
+ }
 }
